@@ -74,5 +74,7 @@
             <CheckBox fx:id="distortionEnable" mnemonicParsing="false" onAction="#checkBoxDistortion" prefHeight="30.0" prefWidth="100.0" text="Distortion" />
          </children>
       </VBox>
-      <CheckBox fx:id="graphicsEnable" layoutX="60.0" layoutY="300.0" mnemonicParsing="false" onAction="#checkBoxGraphics" prefHeight="30.0" prefWidth="100.0" text="Grafics" /></children>
+      <CheckBox fx:id="graphicsEnable" layoutX="60.0" layoutY="300.0" mnemonicParsing="false" onAction="#checkBoxGraphics" prefHeight="30.0" prefWidth="100.0" text="Grafics" />
+      <CheckBox fx:id="IIR" layoutX="60.0" layoutY="330.0" mnemonicParsing="false" onAction="#checkBoxIIR" prefHeight="30.0" prefWidth="100.0" text="IIR" />
+   </children>
 </AnchorPane>

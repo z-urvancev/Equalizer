@@ -45,6 +45,8 @@ public class Controller {
     @FXML private CheckBox clippingEnable;
     @FXML private CheckBox distortionEnable;
     @FXML private CheckBox graphicsEnable;
+    @FXML private CheckBox IIR;
+
 
     @FXML private Label musicTitle;
 
@@ -140,6 +142,19 @@ public class Controller {
                 oData2[i].setYValue(0);
             }
         }
+    }
+
+    @FXML
+    public void checkBoxIIR(ActionEvent e) {
+//        aPlayer.setEnableGraphics(graphicsEnable.isSelected());
+//        if (!graphicsEnable.isSelected()) {
+//            for (int i = 0; i < iData1.length; i++) {
+//                iData1[i].setYValue(0);
+//                iData2[i].setYValue(0);
+//                oData1[i].setYValue(0);
+//                oData2[i].setYValue(0);
+//            }
+//        }
     }
 
     @FXML
