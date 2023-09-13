@@ -26,32 +26,66 @@ public class Controller {
     private Thread audioThread;
     private Thread chartThread;
 
-    @FXML private Slider slider1;
-    @FXML private Slider slider2;
-    @FXML private Slider slider3;
-    @FXML private Slider slider4;
-    @FXML private Slider slider5;
-    @FXML private Slider slider6;
-    private     Slider[] sliders;
-
-    @FXML private Slider clippingSlider;
-
-    @FXML private Button playStopButton;
-    @FXML private Button closeButton;
-    @FXML private Button resetButton;
-
-    @FXML private CheckBox equalizerEnable;
-    @FXML private CheckBox chorusEnable;
-    @FXML private CheckBox clippingEnable;
-    @FXML private CheckBox distortionEnable;
-    @FXML private CheckBox graphicsEnable;
-    @FXML private CheckBox IIR;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
+    @FXML
+    private Label label4;
+    @FXML
+    private Label label5;
+    @FXML
+    private Label label6;
+    private Label[] labels;
 
 
-    @FXML private Label musicTitle;
+    @FXML
+    private Slider slider1;
+    @FXML
+    private Slider slider2;
+    @FXML
+    private Slider slider3;
+    @FXML
+    private Slider slider4;
+    @FXML
+    private Slider slider5;
+    @FXML
+    private Slider slider6;
+    private Slider[] sliders;
 
-    @FXML private NumberAxis iXAxis, iYAxis, oXAxis, oYAxis;
-    @FXML private LineChart<Number, Number>  inputChart, outputChart;
+    @FXML
+    private Slider clippingSlider;
+
+    @FXML
+    private Button playStopButton;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button resetButton;
+
+    @FXML
+    private CheckBox equalizerEnable;
+    @FXML
+    private CheckBox chorusEnable;
+    @FXML
+    private CheckBox clippingEnable;
+    @FXML
+    private CheckBox distortionEnable;
+    @FXML
+    private CheckBox graphicsEnable;
+    @FXML
+    private CheckBox IIR;
+
+
+    @FXML
+    private Label musicTitle;
+
+    @FXML
+    private NumberAxis iXAxis, iYAxis, oXAxis, oYAxis;
+    @FXML
+    private LineChart<Number, Number> inputChart, outputChart;
     private XYChart.Data<Number, Number>[] iData1, iData2, oData1, oData2;
 
     @FXML
@@ -90,12 +124,12 @@ public class Controller {
 
             aPlayer = new AudioPlayer(selected);
 
-            audioThread = new Thread(()->{
+            audioThread = new Thread(() -> {
                 aPlayer.work();
             });
             audioThread.start();
 
-            chartThread = new Thread(()->{
+            chartThread = new Thread(() -> {
                 aPlayer.chartWork(iData1, iData2, oData1, oData2);
             });
             chartThread.start();
@@ -159,7 +193,7 @@ public class Controller {
 
     @FXML
     public void closeClick(ActionEvent e) {
-        if(aPlayer != null) {
+        if (aPlayer != null) {
             aPlayer.endWork();
         }
 
@@ -171,8 +205,8 @@ public class Controller {
         int size = 2048;
 
         /** 2 channels for input and 2 channels for output **/
-        XYChart.Series<Number, Number> inputData1  = new XYChart.Series<>();
-        XYChart.Series<Number, Number> inputData2  = new XYChart.Series<>();
+        XYChart.Series<Number, Number> inputData1 = new XYChart.Series<>();
+        XYChart.Series<Number, Number> inputData2 = new XYChart.Series<>();
         XYChart.Series<Number, Number> outputData1 = new XYChart.Series<>();
         XYChart.Series<Number, Number> outputData2 = new XYChart.Series<>();
 
@@ -182,10 +216,10 @@ public class Controller {
         oData2 = new XYChart.Data[size];
 
         for (int i = 0; i < size; i++) {
-            iData1[i] = new XYChart.Data<>(((double)44100) * i / size - 22050, (double)0);
-            iData2[i] = new XYChart.Data<>(((double)44100) * i / size - 22050, (double)0);
-            oData1[i] = new XYChart.Data<>(((double)44100) * i / size - 22050, (double)0);
-            oData2[i] = new XYChart.Data<>(((double)44100) * i / size - 22050, (double)0);
+            iData1[i] = new XYChart.Data<>(((double) 44100) * i / size - 22050, (double) 0);
+            iData2[i] = new XYChart.Data<>(((double) 44100) * i / size - 22050, (double) 0);
+            oData1[i] = new XYChart.Data<>(((double) 44100) * i / size - 22050, (double) 0);
+            oData2[i] = new XYChart.Data<>(((double) 44100) * i / size - 22050, (double) 0);
 
             inputData1.getData().add(iData1[i]);
             inputData2.getData().add(iData2[i]);
@@ -236,6 +270,11 @@ public class Controller {
                 slider5, slider6
         };
 
+        labels = new Label[]{
+                label1, label2, label3, label4,
+                label5, label6
+        };
+
         for (int i = 0; i < Equalizer.getNumOfFilters(); i++) {
             int finalI = i;
             sliders[i].valueProperty().addListener(new ChangeListener<Number>() {
@@ -247,6 +286,18 @@ public class Controller {
                     double value = Math.pow(10, (-70 + newValue.doubleValue() / sliders[index].getMax() * 70) / 20);
                     if (aPlayer != null)
                         aPlayer.setGain(index, value);
+                    double dbVal;
+                    int dbValInt;
+                    if (sliders[index].getMax() == 0) {
+                        dbValInt = -70;
+                    } else {
+                        dbVal = -70 + newValue.doubleValue() / sliders[index].getMax() * 70;
+                        dbValInt = (int) dbVal;
+                    }
+                    String sign = "";
+                    if (dbValInt == 0)
+                        sign = "+";
+                    labels[finalI].setText(sign + dbValInt + "dB");
                 }
             });
         }
@@ -258,7 +309,7 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> observableValue,
                                 Number oldValue, Number newValue) {
                 if (aPlayer != null)
-                    aPlayer.setBound((short)(Short.MAX_VALUE * newValue.shortValue() / 200));
+                    aPlayer.setBound((short) (Short.MAX_VALUE * newValue.shortValue() / 200));
             }
         });
     }

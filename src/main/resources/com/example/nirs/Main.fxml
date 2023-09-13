@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.controlsfx.property.editor.AbstractObjectField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nirs.Controller">
    <children>
       <Label fx:id="musicTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="50.0" prefHeight="30.0" prefWidth="640.0" text="No music" textAlignment="CENTER" />
@@ -32,9 +33,19 @@
       </LineChart>
       <VBox layoutX="250.0" layoutY="90.0" prefHeight="230.0" prefWidth="640.0">
          <children>
+            <HBox prefHeight="30.0" prefWidth="640.0">
+            <children>
+                <Label fx:id="label1" text="+0 dB"  alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+                <Label fx:id="label2" text="+0 dB"  alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+                <Label fx:id="label3" text="+0 dB" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+                <Label fx:id="label4" text="+0 dB"  alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+                <Label fx:id="label5" text="+0 dB"  alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+                <Label fx:id="label6" text="+0 dB"  alignment="CENTER" prefHeight="30.0" prefWidth="120.0" textAlignment="CENTER"/>
+            </children>
+            </HBox>
             <HBox fx:id="equalizerPane" prefHeight="200.0" prefWidth="640.0">
                <children>
-                  <Slider fx:id="slider1" layoutX="35.0" layoutY="30.0" orientation="VERTICAL" prefWidth="120.0" />
+                   <Slider fx:id="slider1" layoutX="35.0" layoutY="70.0" orientation="VERTICAL" prefWidth="120.0" />
                   <Slider fx:id="slider2" layoutX="70.0" layoutY="30.0" orientation="VERTICAL" prefWidth="120.0" />
                   <Slider fx:id="slider3" layoutX="105.0" layoutY="30.0" orientation="VERTICAL" prefWidth="120.0" />
                   <Slider fx:id="slider4" layoutX="140.0" layoutY="30.0" orientation="VERTICAL" prefWidth="120.0" />
@@ -60,8 +71,8 @@
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Clipping Bound" textAlignment="CENTER" />
          </children>
       </VBox>
-      <Label alignment="TOP_RIGHT" layoutX="230.0" layoutY="90.0" prefHeight="30.0" prefWidth="40.0" text="+0 dB" textAlignment="RIGHT" />
-      <Label alignment="BOTTOM_RIGHT" layoutX="230.0" layoutY="260.0" prefHeight="30.0" prefWidth="40.0" text="-70 dB" textAlignment="RIGHT" />
+<!--      <Label alignment="TOP_RIGHT" layoutX="230.0" layoutY="120.0" prefHeight="30.0" prefWidth="40.0" text="+0 dB" textAlignment="RIGHT" />-->
+<!--      <Label alignment="BOTTOM_RIGHT" layoutX="230.0" layoutY="230.0" prefHeight="30.0" prefWidth="40.0" text="-70 dB" textAlignment="RIGHT" />-->
       <Label alignment="TOP_RIGHT" layoutX="940.0" layoutY="90.0" prefHeight="30.0" prefWidth="40.0" text="100%" textAlignment="RIGHT" />
       <Label alignment="BOTTOM_RIGHT" layoutX="940.0" layoutY="260.0" prefHeight="30.0" prefWidth="40.0" text="0%" />
       <VBox layoutX="60.0" layoutY="50.0" prefHeight="230.0" prefWidth="100.0" spacing="10.0">
